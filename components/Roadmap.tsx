@@ -336,7 +336,7 @@ export default function Roadmap() {
                 Join Our Journey
               </h3>
               <p className="text-xl text-white/95 mb-8 max-w-3xl mx-auto">
-                Your ideas, feedback, and collaboration power our milestones. Together, we're building the future of coding education.
+                Your ideas, feedback, and collaboration power our milestones. Together, we&apos;re building the future of coding education.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">

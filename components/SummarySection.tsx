@@ -128,7 +128,7 @@ export default function SummarySection() {
 
           {/* Animated Summary */}
           <p className="text-xl sm:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed font-medium">
-            India's peer-powered platform where{' '}
+            India&apos;s peer-powered platform where{' '}
             <span className="text-blue-600 font-bold">AI</span>,{' '}
             <span className="text-purple-600 font-bold">mentors</span>, and{' '}
             <span className="text-teal-600 font-bold">learners</span> unite to build future-ready coders.

@@ -256,7 +256,7 @@ export default function ContactForm() {
                   </div>
                   <h3 className="text-3xl font-bold text-gray-900 mb-2">Message Sent!</h3>
                   <p className="text-lg text-gray-600">
-                    Thank you for reaching out. We'll get back to you soon.
+                    Thank you for reaching out. We&apos;ll get back to you soon.
                   </p>
                 </div>
               </div>

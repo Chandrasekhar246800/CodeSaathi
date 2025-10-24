@@ -289,8 +289,8 @@ export default function ProblemSection() {
           }`}
         >
           <blockquote className="relative bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-8 sm:p-12 shadow-2xl">
-            <div className="absolute top-4 left-4 text-6xl text-white/20 font-serif" aria-hidden="true">"</div>
-            <div className="absolute bottom-4 right-4 text-6xl text-white/20 font-serif" aria-hidden="true">"</div>
+            <div className="absolute top-4 left-4 text-6xl text-white/20 font-serif" aria-hidden="true">&ldquo;</div>
+            <div className="absolute bottom-4 right-4 text-6xl text-white/20 font-serif" aria-hidden="true">&rdquo;</div>
             <p className="relative text-2xl sm:text-3xl font-bold text-white text-center leading-relaxed">
               No coder should learn alone. The future demands teamwork, feedback, and guidance.
             </p>
