@@ -8,16 +8,14 @@ interface Milestone {
   goal: string;
   icon: string;
   isCurrent?: boolean;
-  detailedGoal: string;
-  quote: string;
-  quoteAuthor: string;
-  projectedStats: string;
-  cta?: string;
+  keyFeatures: string[];
   gradient: string;
+  accentColor: string;
 }
 
 export default function Roadmap() {
   const [isVisible, setIsVisible] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -45,265 +43,171 @@ export default function Roadmap() {
     {
       phase: 'MVP Launch',
       date: 'Q1 2026',
-      goal: 'Target 10,000 users',
+      goal: 'Core platform with AI mentorship & collaborative coding',
       icon: '🚀',
       isCurrent: true,
-      gradient: 'from-blue-500 via-cyan-500 to-teal-500',
-      detailedGoal: 'Launch our Minimum Viable Product with core AI-powered learning features, mentor matching system, and collaborative coding workspace. Focus on perfecting user experience and gathering early feedback.',
-      quote: 'This is where dreams take flight. Our MVP will democratize coding education for thousands of students across India.',
-      quoteAuthor: 'Founder, CodeSaathi',
-      projectedStats: '10K+ active learners • 500+ mentors • 50+ institutions',
-      cta: 'Be among our first 10,000 users! Shape the future of coding education.',
+      gradient: 'from-blue-500 to-cyan-500',
+      accentColor: 'blue',
+      keyFeatures: ['AI-powered learning', 'Mentor matching', 'Cloud IDE', 'Basic challenges'],
     },
     {
       phase: 'Early Adopters',
       date: 'Q2 2026',
-      goal: 'Community building & feedback',
+      goal: 'Community building & advanced features',
       icon: '👥',
-      gradient: 'from-purple-500 via-pink-500 to-rose-500',
-      detailedGoal: 'Engage deeply with our early adopter community, iterate based on real-world feedback, and build the features students actually need. Launch referral program and community forums.',
-      quote: 'Your voice matters. Every feature we build will be shaped by the community we serve.',
-      quoteAuthor: 'Product Lead, CodeSaathi',
-      projectedStats: '25K+ users • 1,000+ mentors • 100+ partner institutions',
-      cta: 'Join our early adopter program and get lifetime premium benefits!',
+      gradient: 'from-purple-500 to-pink-500',
+      accentColor: 'purple',
+      keyFeatures: ['Community forums', 'Referral program', 'Live sessions', 'Project showcase'],
     },
     {
-      phase: 'Mobile App Release',
+      phase: 'Mobile App',
       date: 'Q3 2026',
-      goal: 'Mobile app goes live',
+      goal: 'Native iOS & Android apps',
       icon: '📱',
-      gradient: 'from-indigo-500 via-purple-500 to-pink-500',
-      detailedGoal: 'Launch native iOS and Android apps with offline learning capabilities, push notifications for mentor sessions, and mobile-optimized coding interface. Make learning accessible anytime, anywhere.',
-      quote: 'Education should fit in your pocket. Our mobile app brings world-class coding education to every smartphone.',
-      quoteAuthor: 'Mobile Team Lead',
-      projectedStats: '50K+ downloads • 15K+ daily active users • 4.8+ app rating',
-      cta: 'Pre-register for mobile app and get early access!',
+      gradient: 'from-indigo-500 to-purple-500',
+      accentColor: 'indigo',
+      keyFeatures: ['Offline learning', 'Push notifications', 'Mobile IDE', 'Voice commands'],
     },
     {
       phase: 'Community Scale',
       date: 'Q4 2026',
-      goal: 'Reach 100,000 learners',
+      goal: '100K+ learners & enterprise features',
       icon: '🌟',
-      gradient: 'from-orange-500 via-red-500 to-pink-500',
-      detailedGoal: 'Scale our platform to serve 100,000+ students across 500+ institutions. Launch advanced features: live coding sessions, hackathons, job board, and industry partnerships for real-world projects.',
-      quote: 'At scale, we become a movement. 100,000 students means 100,000 futures transformed.',
-      quoteAuthor: 'Growth Director',
-      projectedStats: '100K+ students • 5K+ mentors • 500+ institutions • 50+ hiring partners',
-      cta: 'Help us reach 100K students! Partner with us or spread the word.',
+      gradient: 'from-orange-500 to-red-500',
+      accentColor: 'orange',
+      keyFeatures: ['Hackathons', 'Job board', 'Industry partners', 'Advanced analytics'],
     },
     {
       phase: 'Global Impact',
       date: 'Q1 2027',
       goal: 'International expansion',
       icon: '🌍',
-      gradient: 'from-green-500 via-emerald-500 to-teal-500',
-      detailedGoal: 'Expand to Southeast Asia, Middle East, and Africa. Multi-language support, regional content, and partnerships with international universities. Make coding education a global movement.',
-      quote: 'Borders don\'t limit dreams. We\'re building a global community of empowered developers.',
-      quoteAuthor: 'International Expansion Lead',
-      projectedStats: '500K+ global users • 20+ countries • 15+ languages • 2,000+ institutions',
-      cta: 'Join our global journey! International partnerships welcome.',
+      gradient: 'from-green-500 to-teal-500',
+      accentColor: 'green',
+      keyFeatures: ['Multi-language', 'Regional content', 'Global partnerships', '20+ countries'],
     },
-  ];
-
-  // Winding path positions for desktop (percentage-based)
-  const pathPositions = [
-    { left: '10%', top: '20%' },
-    { left: '70%', top: '15%' },
-    { left: '25%', top: '45%' },
-    { left: '75%', top: '60%' },
-    { left: '40%', top: '85%' },
   ];
 
   return (
     <section
       ref={sectionRef}
       id="roadmap"
-      className="relative py-20 bg-gradient-to-b from-blue-50 via-purple-50 to-pink-50 overflow-hidden"
+      className="relative py-24 sm:py-32 bg-gradient-to-b from-slate-900 via-purple-900 to-slate-900 overflow-hidden"
       aria-labelledby="roadmap-title"
     >
-      {/* Animated Background */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-        <div className="absolute top-20 left-20 w-96 h-96 bg-blue-400/20 rounded-full blur-3xl animate-pulse-slow"></div>
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-400/20 rounded-full blur-3xl animate-pulse-slow delay-1000"></div>
-        
-        {/* Sparkles */}
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-2 h-2 bg-yellow-400 rounded-full animate-ping"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${2 + Math.random() * 2}s`,
-            }}
-          ></div>
-        ))}
+      {/* Animated Background Grid */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full blur-3xl animate-pulse" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Section Title */}
         <div
-          className={`text-center mb-16 transition-all duration-1000 transform ${
+          className={`text-center mb-20 transition-all duration-1000 transform ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
           }`}
         >
-          <h2 id="roadmap-title" className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4">
-            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-              Our Journey Ahead
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+            </span>
+            <span className="text-sm font-medium text-blue-300">The Journey</span>
+          </div>
+          
+          <h2 id="roadmap-title" className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white mb-6">
+            Our{' '}
+            <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 text-transparent bg-clip-text">
+              Roadmap
             </span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Every milestone is a step toward transforming coding education — join us on this exciting adventure
+          
+          <p className="text-xl sm:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+            From MVP to global impact — every milestone brings us closer to transforming coding education
           </p>
         </div>
 
-        {/* Desktop Winding Path */}
-        <div className="hidden lg:block relative" style={{ minHeight: '800px' }}>
-          {/* SVG Path */}
-          <svg className="absolute inset-0 w-full h-full pointer-events-none" aria-hidden="true">
-            <defs>
-              <linearGradient id="pathGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#3B82F6" />
-                <stop offset="25%" stopColor="#8B5CF6" />
-                <stop offset="50%" stopColor="#EC4899" />
-                <stop offset="75%" stopColor="#F59E0B" />
-                <stop offset="100%" stopColor="#10B981" />
-              </linearGradient>
-            </defs>
-            <path
-              d="M 100 160 Q 400 140 700 130 Q 900 135 250 360 Q 150 400 750 480 Q 950 520 400 680"
-              stroke="url(#pathGradient)"
-              strokeWidth="4"
-              fill="none"
-              strokeDasharray="10,5"
-              className="animate-dash"
-            />
-          </svg>
+        {/* Timeline - Desktop */}
+        <div className="hidden lg:block relative">
+          {/* Horizontal Timeline Line */}
+          <div className="absolute top-24 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-green-500 rounded-full">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-green-500 rounded-full blur-sm"></div>
+          </div>
 
-          {/* Milestones on Winding Path */}
-          {milestones.map((milestone, index) => (
-            <div
-              key={index}
-              className={`absolute transition-all duration-1000 transform ${
-                isVisible ? `animate-scale-pop delay-${(index + 1) * 200}` : 'opacity-0 scale-0'
-              }`}
-              style={{
-                left: pathPositions[index].left,
-                top: pathPositions[index].top,
-                transform: 'translate(-50%, -50%)',
-              }}
-            >
-              <div
-                className="relative group"
-                aria-label={`${milestone.phase} milestone`}
-              >
-                {/* Milestone Bubble */}
-                <div
-                  className={`bg-gradient-to-br ${milestone.gradient} w-32 h-32 rounded-full flex flex-col items-center justify-center text-white shadow-2xl transition-all duration-500 relative hover:scale-110 ${
-                    milestone.isCurrent ? 'animate-pulse-glow scale-110' : 'scale-100'
-                  }`}
-                >
-                  <span className="text-5xl mb-2">{milestone.icon}</span>
-                  
-                  {/* Floating particles around current milestone */}
-                  {milestone.isCurrent && (
-                    <>
-                      {[...Array(6)].map((_, i) => (
-                        <div
-                          key={i}
-                          className="absolute w-3 h-3 bg-white rounded-full animate-float"
-                          style={{
-                            left: `${50 + 60 * Math.cos((i * Math.PI) / 3)}%`,
-                            top: `${50 + 60 * Math.sin((i * Math.PI) / 3)}%`,
-                            animationDelay: `${i * 0.2}s`,
-                          }}
-                        ></div>
-                      ))}
-                    </>
-                  )}
-                </div>
-
-                {/* "You Are Here" Indicator */}
-                {milestone.isCurrent && (
-                  <div className="absolute -top-16 left-1/2 transform -translate-x-1/2 whitespace-nowrap z-20">
-                    <div className="relative">
-                      <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg animate-bounce-gentle flex items-center gap-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
-                        <span className="relative">⭐ You Are Here</span>
-                      </div>
-                      {/* Arrow pointing down */}
-                      <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-transparent border-t-purple-600"></div>
-                    </div>
-                  </div>
-                )}
-
-                {/* Phase Info Below Bubble */}
-                <div className="absolute top-full mt-6 left-1/2 transform -translate-x-1/2 text-center w-64 pointer-events-none">
-                  <div className="bg-white rounded-2xl shadow-2xl p-5 border-3 border-purple-200">
-                    <div className="text-sm font-extrabold text-purple-600 uppercase tracking-wide mb-2">{milestone.date}</div>
-                    <div className="text-xl font-extrabold text-gray-900 mb-3 leading-tight">{milestone.phase}</div>
-                    <div className="text-base font-bold text-gray-800 leading-snug">{milestone.goal}</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Mobile Vertical Path */}
-        <div className="lg:hidden">
-          <div className="relative space-y-16">
+          <div className="grid grid-cols-5 gap-8 relative">
             {milestones.map((milestone, index) => (
               <div
                 key={index}
                 className={`relative transition-all duration-700 ${
-                  isVisible ? `animate-fade-in-up delay-${(index + 1) * 100}` : 'opacity-0'
+                  isVisible ? `animate-fade-in-up` : 'opacity-0'
                 }`}
+                style={{ animationDelay: `${index * 150}ms` }}
+                onMouseEnter={() => setActiveIndex(index)}
               >
-                {/* Connecting Line */}
-                {index < milestones.length - 1 && (
-                  <div className="absolute left-1/2 top-32 h-16 w-1 bg-gradient-to-b from-purple-400 to-pink-400 transform -translate-x-1/2 z-0 animate-pulse"></div>
-                )}
+                {/* Milestone Card */}
+                <div className={`relative group cursor-pointer ${activeIndex === index ? 'z-20' : 'z-10'}`}>
+                  {/* Icon Circle */}
+                  <div className={`relative mx-auto w-32 h-32 rounded-full bg-gradient-to-br ${milestone.gradient} flex items-center justify-center shadow-2xl transition-all duration-500 mb-8 ${
+                    activeIndex === index ? 'scale-125 shadow-[0_0_50px_rgba(147,51,234,0.5)]' : 'scale-100'
+                  } ${milestone.isCurrent ? 'ring-4 ring-white ring-offset-4 ring-offset-slate-900' : ''}`}>
+                    <span className="text-6xl">{milestone.icon}</span>
+                    
+                    {/* Pulse Ring for Current */}
+                    {milestone.isCurrent && (
+                      <div className="absolute inset-0 rounded-full">
+                        <span className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 animate-ping opacity-75"></span>
+                      </div>
+                    )}
+                    
+                    {/* Connection Dot */}
+                    <div className={`absolute -bottom-4 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-gradient-to-br ${milestone.gradient} border-4 ${
+                      milestone.isCurrent ? 'border-white' : 'border-slate-900'
+                    }`}></div>
+                  </div>
 
-                <div className="relative w-full">
-                  {/* "You Are Here" Mobile */}
+                  {/* Current Badge */}
                   {milestone.isCurrent && (
-                    <div className="mb-4 flex justify-center">
-                      <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg animate-bounce-gentle flex items-center gap-2">
-                        <span>⭐ You Are Here</span>
+                    <div className="absolute -top-12 left-1/2 -translate-x-1/2 whitespace-nowrap">
+                      <div className="px-4 py-2 bg-white text-purple-600 rounded-full text-sm font-bold shadow-lg flex items-center gap-2">
+                        <span className="relative flex h-2 w-2">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-600"></span>
+                        </span>
+                        Current Phase
                       </div>
                     </div>
                   )}
 
-                  <div className={`bg-white rounded-3xl p-6 shadow-xl border-4 ${milestone.isCurrent ? 'border-purple-400 animate-pulse-glow' : 'border-gray-200'}`}>
-                    {/* Icon */}
-                    <div className={`w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br ${milestone.gradient} flex items-center justify-center text-5xl shadow-lg relative`}>
-                      {milestone.icon}
-                      
-                      {/* Floating particles for current */}
-                      {milestone.isCurrent && (
-                        <>
-                          {[...Array(4)].map((_, i) => (
-                            <div
-                              key={i}
-                              className="absolute w-2 h-2 bg-white rounded-full animate-ping"
-                              style={{
-                                left: `${50 + 40 * Math.cos((i * Math.PI) / 2)}%`,
-                                top: `${50 + 40 * Math.sin((i * Math.PI) / 2)}%`,
-                                animationDelay: `${i * 0.3}s`,
-                              }}
-                            ></div>
-                          ))}
-                        </>
-                      )}
+                  {/* Info Card */}
+                  <div className={`bg-slate-800/90 backdrop-blur-sm border rounded-2xl p-6 transition-all duration-500 ${
+                    activeIndex === index 
+                      ? `border-${milestone.accentColor}-500 shadow-2xl scale-105 shadow-${milestone.accentColor}-500/20` 
+                      : 'border-slate-700 shadow-xl'
+                  }`}>
+                    <div className={`text-sm font-bold uppercase tracking-wider mb-2 ${
+                      activeIndex === index ? `text-${milestone.accentColor}-400` : 'text-gray-400'
+                    }`}>
+                      {milestone.date}
                     </div>
+                    <h3 className="text-xl font-extrabold text-white mb-3 leading-tight">
+                      {milestone.phase}
+                    </h3>
+                    <p className="text-sm text-gray-400 mb-4 leading-relaxed">
+                      {milestone.goal}
+                    </p>
 
-                    {/* Info */}
-                    <div className="text-center">
-                      <div className="text-sm font-extrabold text-purple-600 uppercase tracking-wide mb-2">{milestone.date}</div>
-                      <h3 className="text-2xl font-extrabold text-gray-900 mb-3">{milestone.phase}</h3>
-                      <p className="text-base font-bold text-gray-800">{milestone.goal}</p>
+                    {/* Key Features */}
+                    <div className={`space-y-2 transition-all duration-500 ${
+                      activeIndex === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
+                    }`}>
+                      <div className="text-xs font-bold text-gray-300 mb-2">Key Features:</div>
+                      {milestone.keyFeatures.map((feature, idx) => (
+                        <div key={idx} className="flex items-center gap-2 text-xs text-gray-400">
+                          <div className={`w-1.5 h-1.5 rounded-full bg-gradient-to-br ${milestone.gradient}`}></div>
+                          <span>{feature}</span>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -312,76 +216,125 @@ export default function Roadmap() {
           </div>
         </div>
 
-        {/* CTA Ribbon */}
+        {/* Timeline - Mobile/Tablet */}
+        <div className="lg:hidden relative">
+          {/* Vertical Line */}
+          <div className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-500 via-purple-500 to-green-500 rounded-full"></div>
+
+          <div className="space-y-12 relative">
+            {milestones.map((milestone, index) => (
+              <div
+                key={index}
+                className={`relative pl-20 transition-all duration-700 ${
+                  isVisible ? `animate-fade-in-up` : 'opacity-0'
+                }`}
+                style={{ animationDelay: `${index * 150}ms` }}
+              >
+                {/* Icon Circle */}
+                <div className={`absolute left-0 w-16 h-16 rounded-full bg-gradient-to-br ${milestone.gradient} flex items-center justify-center shadow-2xl ${
+                  milestone.isCurrent ? 'ring-4 ring-white ring-offset-4 ring-offset-slate-900 scale-110' : ''
+                }`}>
+                  <span className="text-3xl">{milestone.icon}</span>
+                  
+                  {milestone.isCurrent && (
+                    <div className="absolute inset-0 rounded-full">
+                      <span className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 animate-ping opacity-75"></span>
+                    </div>
+                  )}
+                </div>
+
+                {/* Current Badge */}
+                {milestone.isCurrent && (
+                  <div className="absolute left-20 -top-3">
+                    <div className="px-3 py-1 bg-white text-purple-600 rounded-full text-xs font-bold shadow-lg">
+                      Current
+                    </div>
+                  </div>
+                )}
+
+                {/* Card */}
+                <div className={`bg-slate-800/90 backdrop-blur-sm border rounded-2xl p-6 ${
+                  milestone.isCurrent ? 'border-purple-500 shadow-2xl shadow-purple-500/20' : 'border-slate-700 shadow-xl'
+                }`}>
+                  <div className="text-xs font-bold text-purple-400 uppercase tracking-wider mb-2">
+                    {milestone.date}
+                  </div>
+                  <h3 className="text-2xl font-extrabold text-white mb-3">
+                    {milestone.phase}
+                  </h3>
+                  <p className="text-sm text-gray-400 mb-4 leading-relaxed">
+                    {milestone.goal}
+                  </p>
+
+                  {/* Key Features */}
+                  <div className="space-y-2">
+                    <div className="text-xs font-bold text-gray-300 mb-2">Key Features:</div>
+                    {milestone.keyFeatures.map((feature, idx) => (
+                      <div key={idx} className="flex items-center gap-2 text-xs text-gray-400">
+                        <div className={`w-1.5 h-1.5 rounded-full bg-gradient-to-br ${milestone.gradient}`}></div>
+                        <span>{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* CTA Section */}
         <div
-          className={`mt-20 transition-all duration-1000 delay-700 transform ${
+          className={`mt-24 transition-all duration-1000 delay-500 transform ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
           }`}
         >
-          <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-3xl p-8 sm:p-12 shadow-2xl text-center relative overflow-hidden">
-            {/* Animated background waves */}
-            <div className="absolute inset-0 opacity-20" aria-hidden="true">
-              <svg className="absolute w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <pattern id="wave" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
-                    <path d="M0 50 Q 25 40, 50 50 T 100 50" fill="none" stroke="white" strokeWidth="2" />
-                  </pattern>
-                </defs>
-                <rect width="100%" height="100%" fill="url(#wave)" />
-              </svg>
+          <div className="relative bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-3xl p-12 shadow-2xl overflow-hidden">
+            {/* Animated Background Pattern */}
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMSI+PHBhdGggZD0iTTM2IDE0YzMuMzE0IDAgNiAyLjY4NiA2IDZzLTIuNjg2IDYtNiA2LTYtMi42ODYtNi02IDIuNjg2LTYgNi02ek0yNCA0NGMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNnoiLz48L2c+PC9nPjwvc3ZnPg==')] bg-repeat"></div>
             </div>
 
-            <div className="relative z-10">
-              <h3 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
-                Join Our Journey
+            <div className="relative text-center">
+              <h3 className="text-4xl sm:text-5xl font-extrabold text-white mb-6">
+                Be Part of the Journey
               </h3>
-              <p className="text-xl text-white/95 mb-8 max-w-3xl mx-auto">
-                Your ideas, feedback, and collaboration power our milestones. Together, we&apos;re building the future of coding education.
+              <p className="text-xl text-white/95 mb-10 max-w-3xl mx-auto leading-relaxed">
+                Join thousands of learners, mentors, and institutions shaping the future of coding education
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-                <button className="px-10 py-5 bg-white text-purple-600 font-bold text-lg rounded-full shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
-                  Join the Community
+              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
+                <button className="group px-10 py-5 bg-white text-purple-600 font-bold text-lg rounded-full shadow-2xl hover:shadow-[0_0_40px_rgba(255,255,255,0.5)] transform hover:scale-105 transition-all duration-300">
+                  <span className="flex items-center justify-center gap-2">
+                    Get Early Access
+                    <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                  </span>
                 </button>
-                <button className="px-10 py-5 bg-transparent border-3 border-white text-white font-bold text-lg rounded-full hover:bg-white hover:text-purple-600 transition-all duration-300">
+                <button className="px-10 py-5 bg-white/10 backdrop-blur-sm border-2 border-white text-white font-bold text-lg rounded-full hover:bg-white hover:text-purple-600 transition-all duration-300">
                   Become a Partner
                 </button>
               </div>
 
-              {/* Community Avatars */}
-              <div className="flex justify-center items-center gap-2 mt-8">
-                <div className="flex -space-x-3">
-                  {[...Array(8)].map((_, i) => (
-                    <div
-                      key={i}
-                      className="w-12 h-12 rounded-full border-3 border-white shadow-lg animate-float"
-                      style={{
-                        background: `linear-gradient(135deg, hsl(${i * 45}, 70%, 60%), hsl(${i * 45 + 30}, 70%, 50%))`,
-                        animationDelay: `${i * 0.2}s`,
-                      }}
-                    ></div>
-                  ))}
+              {/* Stats */}
+              <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
+                <div>
+                  <div className="text-4xl font-extrabold text-white mb-2">10K+</div>
+                  <div className="text-sm text-white/80">Early Users</div>
                 </div>
-                <div className="ml-4 text-white font-semibold">
-                  <span className="text-2xl">+10,000</span>
-                  <p className="text-sm opacity-90">Community Members</p>
+                <div>
+                  <div className="text-4xl font-extrabold text-white mb-2">500+</div>
+                  <div className="text-sm text-white/80">Institutions</div>
+                </div>
+                <div>
+                  <div className="text-4xl font-extrabold text-white mb-2">20+</div>
+                  <div className="text-sm text-white/80">Countries</div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes dash {
-          to {
-            stroke-dashoffset: -20;
-          }
-        }
-        .animate-dash {
-          animation: dash 2s linear infinite;
-        }
-      `}</style>
     </section>
   );
 }
