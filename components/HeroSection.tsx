@@ -34,18 +34,22 @@ export default function HeroSection() {
           >
             {/* Headline */}
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
-              <span className="bg-gradient-to-r from-blue-600 via-blue-700 to-teal-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
                 CodeSaathi
               </span>
               <br />
               <span className="text-gray-800">
-                Your Smart Coding Companion
+                Complete Coding Ecosystem
               </span>
             </h1>
 
             {/* Subtitle */}
-            <p className="text-xl sm:text-2xl text-gray-600 mb-8 leading-relaxed">
-              Transform isolated learning into tech-powered collaboration and mentorship.
+            <p className="text-xl sm:text-2xl text-gray-600 mb-4 leading-relaxed font-medium">
+              <strong className="text-gray-900">20 integrated modules</strong> for learning, practicing, collaborating & proving skills — all in one platform
+            </p>
+            
+            <p className="text-lg text-gray-500 mb-8 max-w-2xl mx-auto lg:mx-0">
+              AI mentorship • Live coding • Contests • Interviews • Analytics • Proctoring — No switching, No fragmentation
             </p>
 
             {/* CTA Buttons */}
@@ -63,16 +67,16 @@ export default function HeroSection() {
             {/* Stats or Trust Indicators */}
             <div className="mt-12 flex flex-wrap justify-center lg:justify-start gap-8 text-center">
               <div>
-                <div className="text-3xl font-bold text-blue-600">1000+</div>
-                <div className="text-sm text-gray-600">Active Users</div>
+                <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">20</div>
+                <div className="text-sm text-gray-600 font-medium">Integrated Modules</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-teal-600">500+</div>
-                <div className="text-sm text-gray-600">Mentors</div>
+                <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">8</div>
+                <div className="text-sm text-gray-600 font-medium">Languages Supported</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-blue-600">95%</div>
-                <div className="text-sm text-gray-600">Success Rate</div>
+                <div className="text-3xl font-bold bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent">5000+</div>
+                <div className="text-sm text-gray-600 font-medium">Coding Challenges</div>
               </div>
             </div>
           </div>

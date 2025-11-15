@@ -119,20 +119,25 @@ export default function SummarySection() {
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
           }`}
         >
-          <h2 id="summary-title" className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-6">
+          <h2 id="summary-title" className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-6">
             What is{' '}
-            <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
               CodeSaathi?
             </span>
           </h2>
 
           {/* Animated Summary */}
-          <p className="text-xl sm:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed font-medium">
-            India&apos;s peer-powered platform where{' '}
-            <span className="text-blue-600 font-bold">AI</span>,{' '}
-            <span className="text-purple-600 font-bold">mentors</span>, and{' '}
-            <span className="text-teal-600 font-bold">learners</span> unite to build future-ready coders.
+          <p className="text-xl sm:text-2xl text-gray-700 max-w-5xl mx-auto leading-relaxed font-medium mb-4">
+            A <strong className="text-gray-900">complete coding education ecosystem</strong> that integrates AI mentorship, real-time collaboration, personalized learning, challenges, multilingual support, institutional dashboards, and recruiter testing into{' '}
+            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent font-bold">one connected platform</span>.
           </p>
+          
+          <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
+            <span className="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold">🧠 Learn</span>
+            <span className="px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-semibold">🔥 Practice</span>
+            <span className="px-4 py-2 bg-pink-100 text-pink-700 rounded-full text-sm font-semibold">🤝 Collaborate</span>
+            <span className="px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm font-semibold">🎯 Prove Skills</span>
+          </div>
         </div>
 
         {/* Mission & Vision */}
