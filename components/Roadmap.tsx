@@ -92,13 +92,13 @@ export default function Roadmap() {
     <section
       ref={sectionRef}
       id="roadmap"
-      className="relative py-24 sm:py-32 bg-gradient-to-b from-slate-900 via-purple-900 to-slate-900 overflow-hidden"
+      className="relative py-24 sm:py-32 bg-gradient-to-b from-purple-50 via-white to-blue-50 overflow-hidden"
       aria-labelledby="roadmap-title"
     >
-      {/* Animated Background Grid */}
+      {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute top-20 left-20 w-96 h-96 bg-purple-200/30 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-blue-200/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
@@ -108,22 +108,22 @@ export default function Roadmap() {
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
           }`}
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 text-white mb-6">
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
             </span>
-            <span className="text-sm font-medium text-blue-300">The Journey</span>
+            <span className="text-sm font-medium">The Journey</span>
           </div>
           
-          <h2 id="roadmap-title" className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white mb-6">
+          <h2 id="roadmap-title" className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-gray-900 mb-6">
             Our{' '}
-            <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 text-transparent bg-clip-text">
+            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-transparent bg-clip-text">
               Roadmap
             </span>
           </h2>
           
-          <p className="text-xl sm:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-xl sm:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
             From MVP to global impact — every milestone brings us closer to transforming coding education
           </p>
         </div>
@@ -131,8 +131,8 @@ export default function Roadmap() {
         {/* Timeline - Desktop */}
         <div className="hidden lg:block relative">
           {/* Horizontal Timeline Line */}
-          <div className="absolute top-24 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-green-500 rounded-full">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-green-500 rounded-full blur-sm"></div>
+          <div className="absolute top-24 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 via-purple-400 to-green-400 rounded-full">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-400 via-purple-400 to-green-400 rounded-full blur-sm"></div>
           </div>
 
           <div className="grid grid-cols-5 gap-8 relative">
@@ -180,20 +180,20 @@ export default function Roadmap() {
                   )}
 
                   {/* Info Card */}
-                  <div className={`bg-slate-800/90 backdrop-blur-sm border rounded-2xl p-6 transition-all duration-500 ${
+                  <div className={`bg-white border rounded-2xl p-6 transition-all duration-500 ${
                     activeIndex === index 
                       ? `border-${milestone.accentColor}-500 shadow-2xl scale-105 shadow-${milestone.accentColor}-500/20` 
-                      : 'border-slate-700 shadow-xl'
+                      : 'border-gray-200 shadow-xl'
                   }`}>
                     <div className={`text-sm font-bold uppercase tracking-wider mb-2 ${
-                      activeIndex === index ? `text-${milestone.accentColor}-400` : 'text-gray-400'
+                      activeIndex === index ? `text-${milestone.accentColor}-600` : 'text-gray-500'
                     }`}>
                       {milestone.date}
                     </div>
-                    <h3 className="text-xl font-extrabold text-white mb-3 leading-tight">
+                    <h3 className="text-xl font-extrabold text-gray-900 mb-3 leading-tight">
                       {milestone.phase}
                     </h3>
-                    <p className="text-sm text-gray-400 mb-4 leading-relaxed">
+                    <p className="text-sm text-gray-600 mb-4 leading-relaxed">
                       {milestone.goal}
                     </p>
 
@@ -201,9 +201,9 @@ export default function Roadmap() {
                     <div className={`space-y-2 transition-all duration-500 ${
                       activeIndex === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
                     }`}>
-                      <div className="text-xs font-bold text-gray-300 mb-2">Key Features:</div>
+                      <div className="text-xs font-bold text-gray-700 mb-2">Key Features:</div>
                       {milestone.keyFeatures.map((feature, idx) => (
-                        <div key={idx} className="flex items-center gap-2 text-xs text-gray-400">
+                        <div key={idx} className="flex items-center gap-2 text-xs text-gray-600">
                           <div className={`w-1.5 h-1.5 rounded-full bg-gradient-to-br ${milestone.gradient}`}></div>
                           <span>{feature}</span>
                         </div>
@@ -219,7 +219,7 @@ export default function Roadmap() {
         {/* Timeline - Mobile/Tablet */}
         <div className="lg:hidden relative">
           {/* Vertical Line */}
-          <div className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-500 via-purple-500 to-green-500 rounded-full"></div>
+          <div className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-400 via-purple-400 to-green-400 rounded-full"></div>
 
           <div className="space-y-12 relative">
             {milestones.map((milestone, index) => (
@@ -253,24 +253,24 @@ export default function Roadmap() {
                 )}
 
                 {/* Card */}
-                <div className={`bg-slate-800/90 backdrop-blur-sm border rounded-2xl p-6 ${
-                  milestone.isCurrent ? 'border-purple-500 shadow-2xl shadow-purple-500/20' : 'border-slate-700 shadow-xl'
+                <div className={`bg-white border rounded-2xl p-6 ${
+                  milestone.isCurrent ? 'border-purple-500 shadow-2xl shadow-purple-500/20' : 'border-gray-200 shadow-xl'
                 }`}>
-                  <div className="text-xs font-bold text-purple-400 uppercase tracking-wider mb-2">
+                  <div className="text-xs font-bold text-purple-600 uppercase tracking-wider mb-2">
                     {milestone.date}
                   </div>
-                  <h3 className="text-2xl font-extrabold text-white mb-3">
+                  <h3 className="text-2xl font-extrabold text-gray-900 mb-3">
                     {milestone.phase}
                   </h3>
-                  <p className="text-sm text-gray-400 mb-4 leading-relaxed">
+                  <p className="text-sm text-gray-600 mb-4 leading-relaxed">
                     {milestone.goal}
                   </p>
 
                   {/* Key Features */}
                   <div className="space-y-2">
-                    <div className="text-xs font-bold text-gray-300 mb-2">Key Features:</div>
+                    <div className="text-xs font-bold text-gray-700 mb-2">Key Features:</div>
                     {milestone.keyFeatures.map((feature, idx) => (
-                      <div key={idx} className="flex items-center gap-2 text-xs text-gray-400">
+                      <div key={idx} className="flex items-center gap-2 text-xs text-gray-600">
                         <div className={`w-1.5 h-1.5 rounded-full bg-gradient-to-br ${milestone.gradient}`}></div>
                         <span>{feature}</span>
                       </div>
