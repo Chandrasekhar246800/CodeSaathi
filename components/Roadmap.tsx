@@ -79,12 +79,12 @@ export default function Roadmap() {
     },
     {
       phase: 'Global Impact',
-      date: 'Q1 2027',
-      goal: 'International expansion',
+      date: 'Q5 2027',
+      goal: 'India expansion',
       icon: '🌍',
       gradient: 'from-green-500 to-teal-500',
       accentColor: 'green',
-      keyFeatures: ['Multi-language', 'Regional content', 'Global partnerships', '20+ countries'],
+      keyFeatures: ['Multi-language', 'Regional content'],
     },
   ];
 
