@@ -7,6 +7,8 @@ import FeaturesGrid from '@/components/FeaturesGrid';
 import StatsInfographic from '@/components/StatsInfographic';
 import TechStack from '@/components/TechStack';
 import Roadmap from '@/components/Roadmap';
+import FinancialsSection from '@/components/FinancialsSection';
+import CostBreakdownSection from '@/components/CostBreakdownSection';
 import ContactForm from '@/components/ContactForm';
 import Footer from '@/components/Footer';
 
@@ -22,6 +24,8 @@ export default function Home() {
       <StatsInfographic />
       <TechStack />
       <Roadmap />
+      <FinancialsSection />
+      <CostBreakdownSection />
       <ContactForm />
       <Footer />
     </>

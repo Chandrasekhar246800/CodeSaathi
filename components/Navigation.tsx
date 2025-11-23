@@ -15,6 +15,8 @@ export default function Navigation() {
     { name: 'Features', href: '#features' },
     { name: 'Tech Stack', href: '#tech-stack' },
     { name: 'Roadmap', href: '#roadmap' },
+    { name: 'Financials', href: '#financials' },
+    { name: 'Cost Breakdown', href: '#cost-breakdown' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -29,6 +31,8 @@ export default function Navigation() {
         'stats',
         'tech-stack',
         'roadmap',
+        'financials',
+        'cost-breakdown',
         'contact',
       ];
 
